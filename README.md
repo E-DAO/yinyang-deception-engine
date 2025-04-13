@@ -4,7 +4,7 @@
 
 The YinYang Deception Engine is a backend-only cybersecurity system designed to replace traditional authentication and access logic with symbolic traps, entropy-based evaluation, and karmic behavior mapping.
 
-Created by **TEBG LI** · [ORCID: 0009-0009-0619-9982](https://orcid.org/0009-0009-0619-9982)
+Created by **TENG LI** · [ORCID: 0009-0009-0619-9982](https://orcid.org/0009-0009-0619-9982)
 
 ---
 
