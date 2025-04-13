@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YinYang Simulation Showcase</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 YinYang Deception Simulation</h1>
+        <p id="narration">
+            Welcome to the YinYang Defense System. This simulation demonstrates how entropy-based routes, trap monitoring,
+            and DAO-guided escalation work together to defend your API infrastructure against AI-driven attacks.
+        </p>
+        <button onclick="speakNarration()">🔊 Play Explanation</button>
+        <button onclick="runSimulation()">▶️ Run Simulation</button>
+        <button onclick="downloadReport()">📄 Download Report</button>
+
+        <div id="results" style="margin-top: 20px;"></div>
+    </div>
+
+    <script>
+        function speakNarration() {
+            const text = document.getElementById('narration').innerText;
+            const utterance = new SpeechSynthesisUtterance(text);
+            speechSynthesis.speak(utterance);
+        }
+
+        function runSimulation() {
+            fetch('/run_simulation', { method: 'POST' })
+            .then(() => fetch('/get_summary'))
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById('results').innerText = "No summary available.";
+                } else {
+                    document.getElementById('results').innerHTML = `
+                        <h3>Simulation Results</h3>
+                        <ul>
+                            <li>Total Attacks: ${data.total_attacks}</li>
+                            <li>Blocked: ${data.blocked}</li>
+                            <li>Bypassed: ${data.bypassed}</li>
+                            <li>Trap Triggered: ${data.trap_triggered}</li>
+                            <li>Escalated: ${data.escalated}</li>
+                            <li>DAO Recommendation: <strong>${data.dao_recommendation}</strong></li>
+                        </ul>
+                    `;
+                }
+            });
+        }
+
+        function downloadReport() {
+            window.location.href = '/download';
+        }
+    </script>
+</body>
+</html>
