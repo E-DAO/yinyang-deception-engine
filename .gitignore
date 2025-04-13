@@ -1,18 +1,69 @@
-# ===== YinYang Deception Engine Additions =====
+# ========================
+# 🧠 YinYang Deception Engine .gitignore
+# ========================
 
-# Simulation logs and output
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+*.egg-info/
+
+# Mac system files
+.DS_Store
+Thumbs.db
+
+# Logs and local debugging
+*.log
+*.tmp
+*.bak
+
+# Output artifacts
+*.zip
+*.tar.gz
+*.sqlite
+*.db
+*.pdf
+
+# Config & secrets
+.env
+openai_config.json
+config.json
+credentials.json
+
+# Simulation logs and outputs
+attack_log.json
+simulation_summary.json
 simulation_sessions/
 real_events/
 agent_timelines/
-simulation_summary.json
-attack_log.json
+timeline_exports/
+karma_logs/
 
-# Local config and sensitive data
-openai_config.json
-.env
+# Streamlit generated files
+.streamlit/config.toml
+.streamlit/secrets.toml
 
-# Output & misc
-*.pdf
-*.zip
-*.log
+# UI static junk
+interface/__pycache__/
+interface/static/*.css.map
+
+# Node modules (if frontend included later)
+node_modules/
+
+# VSCode and JetBrains settings (if used)
+.vscode/
+.idea/
+
+# Trap outputs or behavior tests
+*.entropy
+*.karma
+*.timeline
 
