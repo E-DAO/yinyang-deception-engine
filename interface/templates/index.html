@@ -2,56 +2,78 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>YinYang Simulation Showcase</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <meta name="viewport" content="width=device-width, 
+initial-scale=1.0">
+    <title>YinYang Deception Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: lightgreen;
+            border: 1px solid green;
+            display: none;
+        }
+        #report_section {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: lightblue;
+            border: 1px solid blue;
+            display: none;
+        }
+        #simulate_attack_button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #simulate_attack_button:hover {
+            background-color: lightgray;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🧠 YinYang Deception Simulation</h1>
-        <p id="narration">
-            Welcome to the YinYang Defense System. This simulation demonstrates how entropy-based routes, trap monitoring,
-            and DAO-guided escalation work together to defend your API infrastructure against AI-driven attacks.
-        </p>
-        <button onclick="speakNarration()">🔊 Play Explanation</button>
-        <button onclick="runSimulation()">▶️ Run Simulation</button>
-        <button onclick="downloadReport()">📄 Download Report</button>
-
-        <div id="results" style="margin-top: 20px;"></div>
+    <h1>YinYang Deception Engine Simulation</h1>
+    
+    <!-- Button to simulate attack -->
+    <button id="simulate_attack_button">Simulate Attack</button>
+    
+    <!-- Result section (this will be shown after clicking the 
+button) -->
+    <div id="result">
+        <h2>Simulation Result</h2>
+        <p id="simulation_result">Simulation Complete!</p>
+    </div>
+    
+    <!-- Report section (this will be shown after simulation is 
+complete) -->
+    <div id="report_section">
+        <h2>Simulation Report</h2>
+        <p>This is the detailed simulation report.</p>
     </div>
 
     <script>
-        function speakNarration() {
-            const text = document.getElementById('narration').innerText;
-            const utterance = new SpeechSynthesisUtterance(text);
-            speechSynthesis.speak(utterance);
-        }
+        // JavaScript function to simulate the attack and show 
+results
+        
+document.getElementById('simulate_attack_button').addEventListener('click', 
+function() {
+            // Simulate the attack by showing the result and report 
+after 2 seconds
+            setTimeout(function() {
+                // Show the result
+                document.getElementById('result').style.display = 
+'block';
 
-        function runSimulation() {
-            fetch('/run_simulation', { method: 'POST' })
-            .then(() => fetch('/get_summary'))
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    document.getElementById('results').innerText = "No summary available.";
-                } else {
-                    document.getElementById('results').innerHTML = `
-                        <h3>Simulation Results</h3>
-                        <ul>
-                            <li>Total Attacks: ${data.total_attacks}</li>
-                            <li>Blocked: ${data.blocked}</li>
-                            <li>Bypassed: ${data.bypassed}</li>
-                            <li>Trap Triggered: ${data.trap_triggered}</li>
-                            <li>Escalated: ${data.escalated}</li>
-                            <li>DAO Recommendation: <strong>${data.dao_recommendation}</strong></li>
-                        </ul>
-                    `;
-                }
-            });
-        }
-
-        function downloadReport() {
-            window.location.href = '/download';
-        }
+                // Show the report
+                
+document.getElementById('report_section').style.display = 'block';
+            }, 2000); // Wait for 2 seconds before showing the 
+results
+        });
     </script>
 </body>
 </html>
+

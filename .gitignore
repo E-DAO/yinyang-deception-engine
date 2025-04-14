@@ -1,69 +1,125 @@
+# ============================
+# General File Types to Ignore
+# ============================
+
+# Log files
+*.log
+*.log.*
+*.out
+*.err
+
 # ========================
-# 🧠 YinYang Deception Engine .gitignore
+# Python Project Files
 # ========================
 
-# Python cache and compiled files
-__pycache__/
-*.py[cod]
+# Python bytecode files
+*.pyc
 *.pyo
 *.pyd
-*.pdb
-
-# Virtual environments
-venv/
-ENV/
-env/
-.venv/
-*.egg-info/
-
-# Mac system files
-.DS_Store
-Thumbs.db
-
-# Logs and local debugging
-*.log
-*.tmp
-*.bak
-
-# Output artifacts
-*.zip
-*.tar.gz
-*.sqlite
+__pycache__/
 *.db
-*.pdf
+*.sqlite3
 
-# Config & secrets
-.env
-openai_config.json
-config.json
-credentials.json
+# Virtual environment directories
+venv/
+env/
+env.bak/
+venv.bak/
 
-# Simulation logs and outputs
-attack_log.json
-simulation_summary.json
-simulation_sessions/
-real_events/
-agent_timelines/
-timeline_exports/
-karma_logs/
+# Distribution / packaging
+*.egg
+*.egg-info
+dist/
+build/
+eggs/
+sdist/
+wheels/
+*.tar.gz
+*.zip
 
-# Streamlit generated files
-.streamlit/config.toml
-.streamlit/secrets.toml
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
 
-# UI static junk
-interface/__pycache__/
-interface/static/*.css.map
+# Coverage reports (from pytest, etc.)
+.coverage
+*.cover
+*.hypothesis/
 
-# Node modules (if frontend included later)
+# ==========================
+# Node.js Project Files
+# ==========================
+
+# Node.js modules
 node_modules/
 
-# VSCode and JetBrains settings (if used)
+# npm debug log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+dist/
+build/
+
+# Dependency directories
+jspm_packages/
+
+# ==========================
+# IDE/Editor-related files
+# ==========================
+
+# VS Code settings
 .vscode/
+
+# IntelliJ IDEA
 .idea/
 
-# Trap outputs or behavior tests
-*.entropy
-*.karma
-*.timeline
+# JetBrains project files
+*.iml
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Emacs
+*~
+
+# Vim swap files
+*.swp
+
+# ==========================
+# Operating System-specific files
+# ==========================
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# ==========================
+# Environment Files (Sensitive)
+# ==========================
+.env
+*.env
+
+# ==========================
+# Miscellaneous Files
+# ==========================
+# Backup files
+*.bak
+*.tmp
+*.swp
+
+# Ignore IDE-specific build outputs
+*.class
+
+# ==========================
+# Custom Folders (Add any additional folders you want to ignore)
+# ==========================
+# Examples:
+# secret_data/
+# my_private_folder/
+# .temp_files/
+
 
