@@ -112,61 +112,6 @@ Ensure your config.py is organized and only contains essential configuration val
 
 
 
-## 📂 Project Structure
-
-Revised Folder Structure (Backend-Only, Liquid API Focus)
-graphql
-Copy
-Edit
-YinYang-Deception-Engine/
-├── LICENSE
-├── README.md
-├── YinYang_Simulation_Report.pdf
-├── requirements.txt               # Dependencies for Flask, API, and core logic
-├── start_services.sh              # Start-up script for backend services
-├── mkdocs.yml                     # Documentation for API endpoints
-├── config.py                      # Configuration for the system
-├── api.py                         # Liquid API layer that communicates between Yin & Yang
-├── app.py                         # Main app for initializing services and API routes
-├── main.py                        # Main entry point for running the system
-├── generate_report.py             # Script for generating reports (backend only)
-├── generate_timeline.py           # Script for generating simulation timelines (backend only)
-├── postprocess_simulation.py      # Post-processing of simulation data
-├── simulate_attack.py             # Simulate attacks via backend API
-├── session_store.py               # Session management for API
-├── trap_monitor.py                # Monitors traps and triggers from backend
-├── validate_route.py              # Validates the API routes for incoming requests
-├── attack_log.json                # Stores attack-related logs (backend)
-├── deception_log.json             # Stores logs related to deception activities (backend)
-├── simulation_summary.json        # Summary of the simulation outcomes (backend)
-├── data/                          # Data storage for logs and simulation outputs
-│   └── deception_log.json
-├── yin_engine/                    # Probability Engine (Yin) - Handles randomness and decision-making
-│   ├── __init__.py
-│   ├── probability.py             # Core of the Probability Engine logic
-│   ├── karma.py                  # Karma scoring and decision history (related to Yin)
-│   ├── deception_core.py         # Probability and risk analysis for deception traps
-│   ├── logger.py                 # Logging related to Yin engine events
-│   └── risk_assessment.py        # Risk and entropy-based assessments
-├── yang_engine/                   # Simulation Engine (Yang) - Models scenarios, triggers traps
-│   ├── __init__.py
-│   ├── simulation_core.py        # Core logic for the simulation and agent interactions
-│   ├── trap.py                   # Trap management and behavior responses
-│   ├── redemption.py             # Karmic redemption logic (e.g., rewards for good actions)
-│   ├── timeline.py               # Timeline and agent behavior recording
-│   ├── agent_interactions.py     # Handles the interactions between agents in the system
-│   └── karma_management.py       # Karma and behavior outcomes tracking for agents
-├── scripts/                       # Utility and one-off scripts
-│   ├── generate_report.py
-│   ├── generate_timeline.py
-│   ├── postprocess_simulation.py
-│   └── simulate_attack.py
-├── tests/                         # Unit tests and integration tests
-│   ├── test_yin_engine.py         # Unit tests for Yin Engine
-│   ├── test_yang_engine.py        # Unit tests for Yang Engine
-│   └── test_api.py                # API-related tests for the Liquid API
-├── venv/                          # Python virtual environment
-└── __pycache__/                   # Compiled Python files (can be deleted from version control)
 
 
 
@@ -174,6 +119,62 @@ YinYang-Deception-Engine/
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
 
 
 
