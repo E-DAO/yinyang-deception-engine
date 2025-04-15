@@ -30,26 +30,7 @@ Trap management: Determines which trap (e.g., Echo Trap, Black Hole Trap) should
 
 
 
-# YinYang Deception Engine
 
-This backend handles risk assessment, karma scoring, trap management, and logs events related to user activities within a deception engine.
-
-## Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/YinYang-Deception-Engine.git
-   cd YinYang-Deception-Engine
-Install dependencies:
-
-bash
-Copy
-Edit
-pip install -r requirements.txt
-Run the FastAPI server:
-
-bash
-Copy
 Edit
 uvicorn main:app --reload
 The API will be available at http://127.0.0.1:8000.
@@ -65,18 +46,13 @@ GET /log: Retrieve the event logs.
 
 GET /status: Get server status.
 
-License
-MIT License. See LICENSE for details.
 
-makefile
-Copy
-Edit
 
 #### **2. `requirements.txt`**
 
 This file lists all the dependencies required to run the FastAPI app.
 
-```txt
+
 fastapi==0.68.0
 uvicorn==0.15.0
 jinja2==3.0.3
@@ -88,173 +64,74 @@ This file stores your configuration, such as the mode of the system (SIMULATION 
 
 
 
+✅ Step 1: Modify render.yaml
+Inside your repo root folder (~/github/yinyang-deception-engine/), create or update render.yaml like this:
 
-python
+yaml
 Copy
 Edit
-# Configuration file for the YinYang Deception Engine
+services:
+  - type: web
+    name: yinyang-deception
+    env: python
+    buildCommand: pip install -r deception_engine/requirements.txt
+    startCommand: uvicorn deception_engine.main:app --host 0.0.0.0 --port 10000
+    plan: free
 
-ENGINE_MODE = "REAL"  # Switch between "SIMULATION" or "REAL" for different modes.
-4. main.py
-This is the entry point for your FastAPI application.
+This tells Render:
 
-python
+Install dependencies from the subfolder
+
+Run FastAPI app from deception_engine.main
+
+✅ Step 2: Move/Check requirements.txt
+Place your requirements.txt inside:
+
+bash
 Copy
 Edit
-from fastapi import FastAPI
-from api import risk, karma, redeem, logs, status
+~/github/yinyang-deception-engine/deception_engine/requirements.txt
+Double-check it includes:
 
-# Initialize FastAPI app
-app = FastAPI()
-
-# Register routes
-app.include_router(risk.router, prefix="/api")
-app.include_router(karma.router, prefix="/karma")
-app.include_router(redeem.router, prefix="/redeem")
-app.include_router(logs.router, prefix="/log")
-app.include_router(status.router, prefix="/status")
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
-5. api/risk.py
-This file contains the route for assessing risk based on user actions.
-
-python
+txt
 Copy
 Edit
-from fastapi import APIRouter, Request
-from pydantic import BaseModel
-from deception_engine.risk_assessment import assess_risk
+fastapi
+uvicorn
+jinja2
+✅ Step 3: Project Structure Recap
+Render will expect this layout:
 
-router = APIRouter()
-
-class RiskRequest(BaseModel):
-    user_id: str
-    actions: list
-
-@router.post("/risk")
-async def assess_risk_endpoint(request: RiskRequest):
-    risk_score = assess_risk(request.user_id, request.actions)
-    return {"user_id": request.user_id, "risk_score": risk_score}
-6. deception_engine/risk_assessment.py
-This file contains the core logic for risk assessment, calculating entropy, and determining whether to trigger a trap.
-
-python
+arduino
 Copy
 Edit
-from deception_engine.karma import get_karma
-from deception_engine.traps import trigger_trap
 
-def calculate_entropy(actions):
-    return sum(actions) / len(actions) if actions else 0
 
-def assess_risk(user_id, actions):
-    entropy = calculate_entropy(actions)
-    karma = get_karma(user_id)
-    
-    risk = (entropy * 0.6) + ((1 - karma) * 0.4)
-    if risk > 0.75:
-        return trigger_trap(user_id, "blackhole")
-    elif risk > 0.55:
-        return trigger_trap(user_id, "echozone")
-    else:
-        return {"status": "pass", "message": "Access granted"}
-7. deception_engine/traps.py
-This file manages the different traps that users can fall into based on their actions and risk level.
 
-python
-Copy
-Edit
-def trigger_trap(user_id, trap_type):
-    if trap_type == "blackhole":
-        return {"status": "trap", "message": "You are in a recursive loop."}
-    elif trap_type == "echozone":
-        return {"status": "echo", "message": f"Echoing: {user_id}"}
-    return {"status": "unknown", "message": "Unknown trap"}
-8. templates/dashboard.html
-This is a Jinja2 template for the dashboard page. It will render the karma scores and logs.
 
-html
-Copy
-Edit
-<!DOCTYPE html>
-<html>
-<head>
-    <title>YinYang Deception Engine - Dashboard</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
-    <h1>YinYang Deception Engine Dashboard</h1>
-    
-    <h2>Karma Scores</h2>
-    <ul>
-        {% for user_id, karma in users.items() %}
-        <li>{{ user_id }}: {{ karma }}</li>
-        {% endfor %}
-    </ul>
 
-    <h2>Logs</h2>
-    <ul>
-        {% for log in logs %}
-        <li>{{ log.timestamp }} - {{ log.user_id }}: {{ log.event }}</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
-9. static/style.css
-A simple CSS file for styling the dashboard.
 
-css
-Copy
-Edit
-body {
-    font-family: Arial, sans-serif;
-}
 
-h1 {
-    color: #2d2d2d;
-}
 
-h2 {
-    color: #4d4d4d;
-}
 
-ul {
-    list-style-type: none;
-}
-GitHub Repository Example
-Once the backend is ready and committed to GitHub, your repository could look like this:
 
-plaintext
-Copy
-Edit
-YinYang-Deception-Engine/
-├── LICENSE
+
+
+
+
+
+
+
+yinyang-deception-engine/
+├── deception_engine/
+│   ├── main.py                                                     ✅ FastAPI entry
+│   ├── karma.py, traps.py, ...
+│   ├── requirements.txt                                            ✅ Here
+│   ├── templates/
+│   ├── static/
+│   └── data/
+├── render.yaml                                                     ✅ Deployment config
 ├── README.md
-├── requirements.txt
-├── config.py
-├── main.py
-├── deception_engine/              # Core logic and utilities
-│   ├── __init__.py
-│   ├── karma.py
-│   ├── logging.py
-│   ├── risk_assessment.py
-│   ├── traps.py
-├── data/                          # Data storage
-│   └── deception_log.json
-├── api/                           # FastAPI routes
-│   ├── __init__.py
-│   ├── risk.py
-│   ├── karma.py
-│   ├── redeem.py
-│   ├── logs.py
-│   └── status.py
-├── templates/                     # Jinja2 templates for rendering HTML
-│   └── dashboard.html
-├── static/                        # Static assets (CSS, images)
-│   └── style.css
-└── Dockerfile                     # Docker configuration for deployment
 
 
 
@@ -264,6 +141,37 @@ YinYang-Deception-Engine/
 
 
 
+
+
+
+
+✅ Step 4: Push to GitHub
+From your project root:
+
+bash
+Copy
+Edit
+cd ~/github/yinyang-deception-engine
+git add .
+git commit -m "Deployment ready: structure + render config"
+git push origin main
+✅ Step 5: Deploy on https://render.com
+Sign in / Create account
+
+Click New Web Service
+
+Connect to your repo
+
+Render detects render.yaml
+
+Click Deploy
+
+🎉 Get a link like:
+
+arduino
+Copy
+Edit
+https://yinyang-deception.onrender.com/dashboard
 
 
 
