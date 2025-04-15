@@ -111,16 +111,25 @@ Edit
 
 
 
-yinyang-deception-engine/
-├── deception_engine/
-│   ├── main.py                 ✅ FastAPI entry
-│   ├── karma.py, traps.py, ...
-│   ├── requirements.txt        ✅ Here
-│   ├── templates/
-│   ├── static/
-│   └── data/
-├── render.yaml                 ✅ Deployment config
-├── README.md
+edao_bagua_console/
+├── core/
+│   ├── yang_engine.py        ☳ Thunder – active deception
+│   ├── yin_engine.py         ☷ Earth – passive entropy
+│   └── bagua_logic.py        ☯ Core trigram behavior engine
+├── interface/
+│   ├── dashboard_console.py  ☰ Heaven – central control
+│   ├── streamlit_console.py  ☴ Wind – movement & UI
+│   ├── edao_sam_invite.py    ☱ Lake – peaceful diplomacy
+│   └── bagua_symbols.py      🧬 Symbolic trigram definitions
+├── static/
+│   ├── style.css             ☲ Fire – clarity, aesthetics
+│   ├── bagua_ui.css          🎨 Animated trigram visuals
+│   └── eDAOlogo.png
+├── data/
+│   ├── deception_log.json    ☵ Water – stored attack history
+│   └── karma_ledger.json     🪪 Karmic flow map
+└── .streamlit/
+    └── config.toml           📜 Console theming
 
 
 
